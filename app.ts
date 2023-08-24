@@ -6,7 +6,8 @@ import cors from 'cors';
 
 
 import dbConnection from './common/db-connection';
-import gymMemberRouter from './routing/gym-member-routing';
+import userRouter from './routing/user-routing';
+import packagesRouter from './routing/packages-routing';
 
 
 
@@ -14,8 +15,9 @@ const app = express();
 
 app.use(cors())
 app.use(express.json())
+app.use(userRouter)
+app.use(packagesRouter)
 
-app.use('/member', gymMemberRouter); 
 
 dbConnection.initialize()
                     .then(() => {console.log('Connected to DB');})
